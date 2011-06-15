@@ -1,6 +1,7 @@
 Changes
 eg/create_subaccount.pl
 eg/delete_subaccount.pl
+eg/install.pl
 inc/Module/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm

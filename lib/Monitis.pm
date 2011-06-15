@@ -11,7 +11,7 @@ use HTTP::Request::Common;
 use Digest::SHA 'hmac_sha1_base64';
 use JSON;
 
-our $VERSION = '0.8_1';
+our $VERSION = '0.8_2';
 
 use constant DEBUG => $ENV{MONITIS_DEBUG} || 0;
 
@@ -318,6 +318,15 @@ sub _map_to {
     $self;
 }
 
+sub context {
+    my $self = shift;
+
+    return $self->{_typeof} unless @_;
+
+    $self->{_typeof} = shift;
+    $self;
+}
+
 sub api_key {
     my $self = shift;
 
@@ -388,7 +397,7 @@ Monitis - Monitis.com API Perl interface
 
 =head1 VERSION
 
-This document describes Monitis version 0.8_1
+This document describes Monitis version 0.8_2
 
 
 =head1 SYNOPSIS
@@ -398,7 +407,7 @@ This document describes Monitis version 0.8_1
     my $api =
       Monitis->new(sekret_key => $SECRET_KEY, api_key => $API_KEY);
 
-    # Create subaccount, see L<Monitis::SubAccounts>
+    # Create subaccount, see Monitis::SubAccounts
     my $response = $api->sub_accounts->add(
         firstName => 'John',
         lastName  => 'Smith',
@@ -410,7 +419,7 @@ This document describes Monitis version 0.8_1
     die "Failed to create account: $response->{status}"
       unless $response->{status} eq 'ok';
 
-    # Add memory monitor, see L<Monitis::Memory>
+    # Add memory monitor, see Monitis::Memory
     $response = $api->memory->add(
         agentkey      => 'test-agent',
         name          => 'memory_monitor',
@@ -469,6 +478,10 @@ auth_token auto-updates token, when it expires (after 24 hours).
 
 Auth token time-to-live in seconds. 24 hours by default.
 
+=head2 context
+
+Context of execution
+
 =head1 METHODS
 
 L<Monitis> implements following methods:
@@ -481,11 +494,15 @@ L<Monitis> implements following methods:
 Construct a new L<Monitis> instance.
 
 =head2 sub_accounts layout contacts predefined_monitors external_monitors
+
 =head2 itnernal_monitors agents cpu memory drive process load_average http ping
+
 =head2 transaction_monitors full_page_load_monitors
+
 =head2 visitor_trackers cloud_instances
 
 This methods switch API context to corresponding section.
+
 Please refer to documentation of corresponding package (see L<SEE ALSO>)
 and to Monitis API manual.
 

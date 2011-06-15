@@ -5,11 +5,16 @@ author:
 build_requires:
   Digest::SHA: 0
   ExtUtils::MakeMaker: 6.42
+  File::Path: 0
+  File::Spec: 0
+  File::Temp: 0
   HTTP::Headers: 0
   HTTP::Request: 0
   HTTP::Request::Common: 0
+  IPC::Open3: 0
   JSON: 0
   LWP::UserAgent: 0
+  Symbol: 0
   Test::More: 0
 configure_requires:
   ExtUtils::MakeMaker: 0
@@ -26,4 +31,4 @@ no_index:
     - t
     - inc
 requires: {}
-version: 0.8_1
+version: 0.8_2
