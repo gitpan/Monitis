@@ -41,6 +41,8 @@ GetOptions(
 
 pod2usage if $opts{help};
 
+check_deps();
+
 # Read config file
 $opts{mandatory_config} = !!$opts{config};
 $opts{config} ||= 'monitis.conf';
@@ -413,6 +415,42 @@ sub cleanup {
         unlink $file or die "\nUnable to remove config file '$file': $!\n";
         print "\nConfig '$file' was successfully removed\n";
     }
+}
+
+sub check_deps {
+
+    my @files = (
+        "libssl.so",        "libssl.so.0.9.8",
+        "libssl.so.0.9.7",  "libssl.so.0.9.7a",
+        "libssl.so.0.9.7b", "libssl.so.0.9.7c",
+        "libssl.so.0.9.8a", "libssl.so.0.9.8b",
+        "libssl.so.0.9.8c", "libssl.so.0.9.8e"
+    );
+
+    my $libssl;
+
+  DIR: foreach my $dir ('/usr/lib', '/lib') {
+        foreach my $file (@files) {
+            if (-f "$dir/$file") {
+                $libssl = "$dir/$file";
+                last DIR;
+            }
+        }
+    }
+
+    warn <<END unless $libssl;
+
+   ATTENTION
+
+   Looks like libssl is not installed.
+   You need to install it.
+   Or yo may need to create a symbolic link to your libssl.so:
+
+        ln -s /lib/libssl.so.0.9.7 /usr/lib/libssl.so
+
+   See agents's doc/README for details
+
+END
 }
 
 __END__

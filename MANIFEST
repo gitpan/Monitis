@@ -1,7 +1,6 @@
 Changes
 eg/create_subaccount.pl
 eg/delete_subaccount.pl
-eg/install.pl
 inc/Module/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm
@@ -11,6 +10,7 @@ inc/Module/Install/Fetch.pm
 inc/Module/Install/Include.pm
 inc/Module/Install/Makefile.pm
 inc/Module/Install/Metadata.pm
+inc/Module/Install/Scripts.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 lib/Monitis.pm
@@ -38,6 +38,7 @@ MANIFEST			This list of files
 META.yml
 MYMETA.yml
 README
+script/monitis-agent-install
 t/00.load.t
 t/api.t
 t/lib/Test/Monitis.pm

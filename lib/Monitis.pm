@@ -11,7 +11,7 @@ use HTTP::Request::Common;
 use Digest::SHA 'hmac_sha1_base64';
 use JSON;
 
-our $VERSION = '0.8_2';
+our $VERSION = '0.8_3';
 
 use constant DEBUG => $ENV{MONITIS_DEBUG} || 0;
 
@@ -48,8 +48,7 @@ sub new {
     my $class = shift;
     my $self  = {@_};
 
-    $self->{ua}
-      ||= LWP::UserAgent->new(agent => "perl-monitis-api/$VERSION");
+    $self->{ua} ||= LWP::UserAgent->new(agent => "perl-monitis-api/$VERSION");
 
     $self->{json} ||= JSON->new;
 
@@ -397,7 +396,7 @@ Monitis - Monitis.com API Perl interface
 
 =head1 VERSION
 
-This document describes Monitis version 0.8_2
+This document describes Monitis version 0.8_3
 
 
 =head1 SYNOPSIS
