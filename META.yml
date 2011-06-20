@@ -34,4 +34,4 @@ resources:
   homepage: http://monitis.com/api/api.html
   license: http://dev.perl.org/licenses
   repository: https://github.com/monitisexchange/Perl-SDK
-version: 0.8_3
+version: 0.9
